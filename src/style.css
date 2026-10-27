@@ -52,3 +52,9 @@ footer{padding:50px 4vw 28px;overflow:hidden}.footer-word{font-size:16vw;letter-
  .digital-form .form-image>img,.digital-form .form-video{object-fit:cover;object-position:30% center}
  .digital-form .form-play-retry{left:max(6vw,env(safe-area-inset-left));right:max(6vw,env(safe-area-inset-right));top:auto;bottom:max(24px,env(safe-area-inset-bottom));width:fit-content;max-width:88vw}
 }
+
+/* Remove the mobile sticky exit viewport, not the video's active scroll range. */
+@media (max-width:480px) and (pointer:coarse) and (prefers-reduced-motion:no-preference){
+ .first-contact{margin-bottom:-100svh;z-index:1}
+ .first-contact .stage{opacity:var(--hero-mobile-exit-opacity,1)}
+}

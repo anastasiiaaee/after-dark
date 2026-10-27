@@ -32,6 +32,10 @@ export function initMobileHero(section,stage,video,reduced){
    // Follow the existing face turn within the narrow crop, then center the eye.
    const p=Math.max(0,Math.min(1,value/.55)),ease=p*p*(3-2*p);
    stage.style.setProperty('--hero-mobile-focus',`${30+20*ease}%`);
+   // The next section occupies the sticky stage's exit footprint. Fade only
+   // the mobile handoff; the full video still uses the same scroll distance.
+   const exit=Math.max(0,Math.min(1,(value-.95)/.05));
+   stage.style.setProperty('--hero-mobile-exit-opacity',String(1-exit*exit*(3-2*exit)));
   }
  };
 }
