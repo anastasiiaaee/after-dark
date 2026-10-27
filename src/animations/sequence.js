@@ -59,7 +59,7 @@ export function initSequence(reduced){
     shade.style.opacity=1-smooth(clamp(copyProgress/.12));
     if(!initialized||reduced)return;
     // At most one seek in flight. Scroll updates overwrite a scalar, never a queue.
-    if(!inFlight&&!video.seeking&&video.readyState>=1&&Math.abs(targetTime-video.currentTime)>=EPSILON){
+    if(!inFlight&&!video.seeking&&(video.readyState>=1)&&Math.abs(targetTime-video.currentTime)>=EPSILON){
       inFlight=true;seekStarted=performance.now();seeks++;
       try{video.currentTime=targetTime;}
       catch{inFlight=false;stage.dataset.mediaError='seek-failed';}

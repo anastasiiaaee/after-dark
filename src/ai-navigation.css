@@ -17,5 +17,3 @@
 .ai-navigation.ai-motion [data-ai-reveal].ai-visible{opacity:1;transform:translateY(0)}
 @media(prefers-reduced-motion:reduce){.ai-navigation.ai-motion [data-ai-reveal]{opacity:1;transform:none}.ai-direction:hover .ai-direction-title,.ai-direction:hover .ai-direction-arrow{transform:none}}
 
-@media(max-width:900px){.ai-direction{grid-template-columns:36px minmax(0,1fr) minmax(0,1.1fr) 24px;gap:18px}.ai-direction-title{font-size:24px}.ai-navigation h2{font-size:5.8vw}.ai-intro{max-width:600px}}
-@media(max-width:600px){.ai-navigation .section-meta{margin-bottom:32px}.ai-navigation h2{font-size:5.9vw;line-height:1.12;margin-bottom:28px}.ai-intro{font-size:17px;margin-bottom:35px}.ai-direction{grid-template-columns:28px minmax(0,1fr) 20px;padding:28px 0;gap:12px}.ai-direction-title{font-size:23px;grid-column:2;grid-row:1}.ai-direction-copy{grid-column:2/4;font-size:16px}.ai-direction-arrow{grid-column:3;grid-row:1;font-size:23px}.ai-direction>.item-no{grid-row:1;padding-top:3px}}
