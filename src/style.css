@@ -53,8 +53,10 @@ footer{padding:50px 4vw 28px;overflow:hidden}.footer-word{font-size:16vw;letter-
  .digital-form .form-play-retry{left:max(6vw,env(safe-area-inset-left));right:max(6vw,env(safe-area-inset-right));top:auto;bottom:max(24px,env(safe-area-inset-bottom));width:fit-content;max-width:88vw}
 }
 
-/* Remove the mobile sticky exit viewport, not the video's active scroll range. */
+/* Mobile handoff uses normal document flow and real container height. */
 @media (max-width:480px) and (pointer:coarse) and (prefers-reduced-motion:no-preference){
- .first-contact{margin-bottom:-100svh;z-index:1}
- .first-contact .stage{opacity:var(--hero-mobile-exit-opacity,1)}
+ .first-contact{height:calc(350svh + var(--hero-mobile-stage-height,100svh) + var(--hero-mobile-hold-space,0px));overflow-anchor:none}
+ .first-contact .stage{height:var(--hero-mobile-stage-height,100svh);max-height:100svh}
+ .first-contact[data-mobile-handoff="exit"]{--hero-mobile-stage-height:24svh;height:374svh}
+ .first-contact[data-mobile-handoff="exit"],.first-contact[data-mobile-handoff="restoring"],.first-contact[data-mobile-handoff="exit"] .stage,.first-contact[data-mobile-handoff="restoring"] .stage{transition:height .28s ease-out}
 }
