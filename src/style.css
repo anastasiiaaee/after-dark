@@ -45,3 +45,10 @@ footer{padding:50px 4vw 28px;overflow:hidden}.footer-word{font-size:16vw;letter-
 @media (max-width:480px) and (prefers-reduced-motion:reduce){
  .first-contact{height:100svh}
 }
+
+/* Portrait framing for the second scene only; all media layers share one crop. */
+@media (max-width:480px){
+ .digital-form{height:100svh;height:100dvh}
+ .digital-form .form-image>img,.digital-form .form-video{object-fit:cover;object-position:30% center}
+ .digital-form .form-play-retry{left:max(6vw,env(safe-area-inset-left));right:max(6vw,env(safe-area-inset-right));top:auto;bottom:max(24px,env(safe-area-inset-bottom));width:fit-content;max-width:88vw}
+}
