@@ -1,0 +1,21 @@
+.ai-navigation{background:var(--black);color:var(--white)}
+.ai-navigation .section-meta{margin-bottom:64px}
+.ai-navigation .section-meta>span{font-size:12px;color:var(--white)}
+.ai-navigation h2{font-size:clamp(38px,5.8vw,116px);line-height:1.02;margin-bottom:36px}
+.ai-intro{max-width:760px;margin:0 0 70px auto;font-size:18px;line-height:1.65;color:var(--silver)}
+.ai-intro p+p,.ai-direction-copy p+p{margin-top:14px}
+.ai-direction{display:grid;grid-template-columns:clamp(36px,3.4vw,64px) minmax(0,1fr) minmax(0,1.1fr) 32px;gap:clamp(18px,2vw,38px);align-items:start;padding:40px 0;border-top:1px solid var(--line);transition:border-color .3s ease;cursor:default}
+.ai-direction:last-child{border-bottom:1px solid var(--line)}
+.ai-direction>.item-no{padding-top:8px}
+.ai-direction-title{min-width:0;margin:0;font-size:clamp(24px,2.25vw,44px);font-weight:500;line-height:1.12;letter-spacing:-.045em;transition:transform .3s ease}
+.ai-direction-copy{min-width:0;font-size:clamp(16px,1vw,18px);line-height:1.65;color:var(--silver)}
+.ai-direction-arrow{display:block;font-size:30px;line-height:1;color:var(--silver);transition:transform .3s ease,color .3s ease}
+.ai-direction:hover{border-color:#ffffff66}
+.ai-direction:hover .ai-direction-title{transform:translateX(10px)}
+.ai-direction:hover .ai-direction-arrow{transform:rotate(12deg);color:var(--red)}
+.ai-navigation.ai-motion [data-ai-reveal]{opacity:0;transform:translateY(22px);transition:opacity .5s ease var(--ai-delay,0s),transform .5s ease var(--ai-delay,0s),border-color .3s ease}
+.ai-navigation.ai-motion [data-ai-reveal].ai-visible{opacity:1;transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){.ai-navigation.ai-motion [data-ai-reveal]{opacity:1;transform:none}.ai-direction:hover .ai-direction-title,.ai-direction:hover .ai-direction-arrow{transform:none}}
+
+@media(max-width:900px){.ai-direction{grid-template-columns:36px minmax(0,1fr) minmax(0,1.1fr) 24px;gap:18px}.ai-direction-title{font-size:24px}.ai-navigation h2{font-size:5.8vw}.ai-intro{max-width:600px}}
+@media(max-width:600px){.ai-navigation .section-meta{margin-bottom:32px}.ai-navigation h2{font-size:5.9vw;line-height:1.12;margin-bottom:28px}.ai-intro{font-size:17px;margin-bottom:35px}.ai-direction{grid-template-columns:28px minmax(0,1fr) 20px;padding:28px 0;gap:12px}.ai-direction-title{font-size:23px;grid-column:2;grid-row:1}.ai-direction-copy{grid-column:2/4;font-size:16px}.ai-direction-arrow{grid-column:3;grid-row:1;font-size:23px}.ai-direction>.item-no{grid-row:1;padding-top:3px}}

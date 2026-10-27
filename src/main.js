@@ -1,0 +1,14 @@
+import './style.css';
+import './ai-navigation.css';
+import {initAiNavigation} from './animations/ai-navigation.js';
+import {initSequence} from './animations/sequence.js';
+import {initScenes} from './animations/scenes.js';
+import {mountProjects} from './components/projects.js';
+mountProjects();
+const motion=matchMedia('(prefers-reduced-motion: reduce)');
+initAiNavigation(motion.matches);
+let renderSequence=initSequence(motion.matches),renderScenes=initScenes(motion.matches),y=scrollY;
+motion.addEventListener('change',()=>location.reload());
+function tick(){const target=scrollY;const delta=target-y;y=motion.matches||Math.abs(delta)<.06?target:y+delta*.18;renderSequence(y);renderScenes();requestAnimationFrame(tick);}requestAnimationFrame(tick);
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}}),{threshold:.1});
+document.querySelectorAll('.section-intro,.services>h2,.about-layout,.about-statement,.contact h2,.contact-row').forEach(e=>{e.classList.add('reveal');observer.observe(e);});
