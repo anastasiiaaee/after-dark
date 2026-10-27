@@ -1,6 +1,6 @@
 // Mobile-only media readiness and native-scroll geometry; no scroll interception.
 export function initMobileHero(section,stage,video,reduced){
- const query=matchMedia('(max-width: 430px) and (pointer: coarse)');
+ const query=matchMedia('(max-width: 480px) and (pointer: coarse)');
  if(!matchMedia('(pointer: coarse)').matches)return null;
  let priming=false;
  const distance=()=>Math.max(1,section.offsetHeight-stage.offsetHeight);

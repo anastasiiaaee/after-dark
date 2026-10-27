@@ -32,16 +32,16 @@ footer{padding:50px 4vw 28px;overflow:hidden}.footer-word{font-size:16vw;letter-
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}.first-contact{height:100vh}.reveal:not(.visible){opacity:1;transform:none}.service-row:hover h3,.project-row:hover h3{transform:none}}
 
 /* Only the narrow Hero: stable geometry while mobile browser bars change. */
-@media (max-width:430px){
+@media (max-width:480px){
  .first-contact{height:450svh;touch-action:pan-y pinch-zoom}
  .first-contact .stage{height:100svh;background-position:var(--hero-mobile-focus,30%) center}
  .stage .hero-video{object-position:var(--hero-mobile-focus,30%) center}
  .hero-copy h1{left:6vw;bottom:max(9%,env(safe-area-inset-bottom));font-size:8vw;line-height:1.05}
  .hero-signature{left:6vw;top:auto;bottom:calc(9% + 16.8vw + 22px);font-size:9px;letter-spacing:.06em}
 }
-@media (max-width:430px) and (pointer:coarse){
+@media (max-width:480px) and (pointer:coarse){
  .stage:not([data-mobile-frame="true"]) .hero-video{opacity:0}
 }
-@media (max-width:430px) and (prefers-reduced-motion:reduce){
+@media (max-width:480px) and (prefers-reduced-motion:reduce){
  .first-contact{height:100svh}
 }
