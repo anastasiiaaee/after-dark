@@ -6,7 +6,7 @@
 .brand{font-size:29px;font-weight:700;letter-spacing:-.06em}
 .brand span{font-weight:400;margin-left:9px}
 .first-contact{height:450vh;position:relative}
-.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:#08090b url('/hero-poster.png') center/cover no-repeat}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:#08090b}
 .stage .hero-video{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
 .hero-shade{position:absolute;inset:0;background:linear-gradient(0deg,#08090bbd 0%,#08090b24 40%,transparent 60%);pointer-events:none}
 .hero-copy{position:absolute;inset:0;pointer-events:none}
@@ -25,3 +25,6 @@ footer{padding:50px 4vw 28px;overflow:hidden}.footer-word{font-size:16vw;letter-
 .reveal{transition:opacity .8s,transform .8s}.reveal:not(.visible){opacity:0;transform:translateY(35px)}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}.first-contact{height:100vh}.reveal:not(.visible){opacity:1;transform:none}.service-row:hover h3,.project-row:hover h3{transform:none}}
 
+
+.hero-canvas-poster{position:absolute;inset:0}
+.hero-canvas{position:absolute;inset:0;display:block;width:100%;height:100%;visibility:hidden}
