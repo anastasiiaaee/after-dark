@@ -1,11 +1,13 @@
 import {gsap} from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
+import {initMobileHero} from './mobile-hero.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function initSequence(reduced){
   const section=document.querySelector('.first-contact'),stage=section.querySelector('.stage');
   const video=stage.querySelector('.hero-video'),copy=stage.querySelector('.hero-copy'),shade=stage.querySelector('.hero-shade');
+  const mobileHero=initMobileHero(section,stage,video,reduced);
   let trigger=null,duration=0,targetTime=0,progress=0,inFlight=false,initialized=false;
   let seeks=0,seekStarted=0,maxSeekMs=0,lastPresented=null;
   const EPSILON=.001;
@@ -23,7 +25,7 @@ export function initSequence(reduced){
       // This trigger only measures progress; it adds no pin, spacer or timeline.
       trigger=ScrollTrigger.create({
         id:'hero-video-scroll',trigger:section,start:'top top',
-        end:()=>`+=${Math.max(1,section.offsetHeight-innerHeight)}`,
+        end:()=>`+=${mobileHero?.active?mobileHero.distance():Math.max(1,section.offsetHeight-innerHeight)}`,
         invalidateOnRefresh:true,
         onUpdate:self=>updateTarget(self.progress),
         onRefresh:self=>updateTarget(self.progress)
@@ -54,17 +56,25 @@ export function initSequence(reduced){
   if(video.readyState>=1)metadata();
   return function render(y){
     // Keep the existing title/shade choreography; it does not modify video pixels.
-    const copyProgress=reduced?0:clamp(y/Math.max(1,section.offsetHeight-innerHeight));
+    const mobile=mobileHero?.active;
+    const copyProgress=reduced?0:mobile?mobileHero.progress():clamp(y/Math.max(1,section.offsetHeight-innerHeight));
+    if(mobile){
+      mobileHero.frame(copyProgress);
+      if(initialized)updateTarget(copyProgress);
+      // Some mobile media pipelines finish a seek without a useful seeked event.
+      // Trust the native flag, retaining the same single latest-target controller.
+      if(inFlight&&!video.seeking)inFlight=false;
+    }
     copy.style.opacity=1-smooth(clamp(copyProgress/.09));
     shade.style.opacity=1-smooth(clamp(copyProgress/.12));
     if(!initialized||reduced)return;
     // At most one seek in flight. Scroll updates overwrite a scalar, never a queue.
-    if(!inFlight&&!video.seeking&&video.readyState>=1&&Math.abs(targetTime-video.currentTime)>=EPSILON){
+    if(!inFlight&&!video.seeking&&(mobile?mobileHero.canSeek():video.readyState>=1)&&Math.abs(targetTime-video.currentTime)>=EPSILON){
       inFlight=true;seekStarted=performance.now();seeks++;
       try{video.currentTime=targetTime;}
       catch{inFlight=false;stage.dataset.mediaError='seek-failed';}
     }
-    Object.assign(stage.dataset,{currentTime:video.currentTime.toFixed(6),seeking:String(inFlight||video.seeking),seeks:String(seeks),scrollDistance:String(section.offsetHeight-innerHeight),triggers:String(ScrollTrigger.getAll().filter(t=>t.vars.id==='hero-video-scroll').length)});
+    Object.assign(stage.dataset,{currentTime:video.currentTime.toFixed(6),seeking:String(inFlight||video.seeking),seeks:String(seeks),scrollDistance:String(mobile?mobileHero.distance():section.offsetHeight-innerHeight),triggers:String(ScrollTrigger.getAll().filter(t=>t.vars.id==='hero-video-scroll').length)});
   };
 }
 export const clamp=x=>Math.max(0,Math.min(1,x));
